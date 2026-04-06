@@ -2,6 +2,30 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import plotly.express as px
+import streamlit as st
+
+def login():
+
+    user = st.text_input("Usuário")
+    password = st.text_input("Senha", type="password")
+
+    if user == "admin" and password == "1234":
+        return True
+    else:
+        return False
+
+if "logged" not in st.session_state:
+    st.session_state["logged"] = False
+
+if not st.session_state["logged"]:
+
+    st.title("Login")
+
+    if login():
+        st.session_state["logged"] = True
+        st.rerun()
+
+    st.stop()
 
 FILE_PATH = "ASSESSORIA_FINANCE_DATABASE.xlsx"
 
